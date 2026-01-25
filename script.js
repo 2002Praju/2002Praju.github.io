@@ -32,3 +32,39 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Image Modal Functionality
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const imageLinks = document.querySelectorAll('.image-link');
+const closeBtn = document.querySelector('.close');
+
+// Open modal when image link is clicked
+imageLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const imageSrc = this.getAttribute('data-image');
+        modal.style.display = 'block';
+        modalImg.src = imageSrc;
+        modalImg.alt = 'Full size image';
+    });
+});
+
+// Close modal when close button is clicked
+closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+});
+
+// Close modal when clicking outside the image
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        modal.style.display = 'none';
+    }
+});
